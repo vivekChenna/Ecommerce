@@ -7,7 +7,7 @@ import Cart from "./components/Cart";
 import Contact from "./components/Contact";
 import { useSelector } from "react-redux";
 import ErrorPage from "./components/ErrorPage";
-
+import SingleProduct from "./components/SingleProduct";
 function App() {
   const darkMode = useSelector((store) => store.app.DarkMode);
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>
     </div>
   );
