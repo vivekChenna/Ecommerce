@@ -5,10 +5,12 @@ import Header from "./components/Header";
 import About from "./components/About";
 import Cart from "./components/Cart";
 import Contact from "./components/Contact";
+import { useSelector } from "react-redux";
 
 function App() {
+  const darkMode = useSelector((store) => store.app.DarkMode);
   return (
-    <div className="">
+    <div className={darkMode ? "bg-slate-900" : ""}>
       <Header />
       <Routes>
         <Route path="/" element={<Body />} />
