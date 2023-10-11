@@ -24,12 +24,12 @@ const Header = () => {
           src={Logo}
           alt="gada-electronics-img"
           width="50"
-          className=" rounded-full"
+          className=" rounded-full outline-none"
         />
       </Link>
 
-      <div className="flex">
-        <ul className="flex gap-12">
+      <div className="flex items-center">
+        <ul className="flex gap-12 items-center">
           <li>
             <Link className="text-white font-serif text-2xl font-bold" to="/">
               Home
@@ -59,29 +59,23 @@ const Header = () => {
               Cart
             </Link>
           </li>
-          <li className=" py-1">
-            <Link
-              className="text-white font-serif text-2xl font-bold"
-              to="#"
-              onClick={() => {
-                dispatch(toggleMode());
-              }}
-            >
-              {showBtn ? (
-                <BsSun
-                  fontSize="1.65rem"
-                  color="white"
-                  onClick={() => setShowBtn(!showBtn)}
-                />
-              ) : (
-                <BsMoon
-                  fontSize="1.55rem"
-                  color="white"
-                  onClick={() => setShowBtn(!showBtn)}
-                />
-              )}
-            </Link>
-          </li>
+          {showBtn ? (
+            <div className=" border border-white px-1 py-1  rounded-lg cursor-pointer">
+              <BsMoon
+                fontSize="1.65rem"
+                color="white"
+                onClick={() => [setShowBtn(!showBtn), dispatch(toggleMode())]}
+              />
+            </div>
+          ) : (
+            <div className=" border border-white px-1 py-1 cursor-pointer rounded-lg">
+              <BsSun
+                fontSize="1.55rem"
+                color="white"
+                onClick={() => [setShowBtn(!showBtn), dispatch(toggleMode())]}
+              />
+            </div>
+          )}
         </ul>
       </div>
     </div>

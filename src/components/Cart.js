@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-  return (
-    <div>Cart</div>
-  )
-}
+  const cartItems = useSelector((store) => store.app.cartItems);
+  console.log(cartItems);
+  return <div>Cart</div>;
+};
 
-export default Cart
+export default Cart;

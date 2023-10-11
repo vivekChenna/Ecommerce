@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import { useSelector } from "react-redux";
 import ErrorPage from "./components/ErrorPage";
 import SingleProduct from "./components/SingleProduct";
+import AllProducts from "./components/AllProducts";
 function App() {
   const darkMode = useSelector((store) => store.app.DarkMode);
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/shop" element={<AllProducts />} />
       </Routes>
     </div>
   );

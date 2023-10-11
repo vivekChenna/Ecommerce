@@ -4,15 +4,19 @@ import Transport from "./Transport";
 import React, { useState, useEffect } from "react";
 import Spinner from "./Spinner";
 import FeatureSection from "./FeatureSection";
+import { useDispatch } from "react-redux";
+import { AllProductsData } from "../redux/appSlice";
 
 const Body = () => {
   const [featuredData, setFeaturedData] = useState([]);
+  const dispatch = useDispatch();
 
   async function getProductsData() {
     try {
       const response = await fetch(`https://api.pujakaitem.com/api/products`);
       const jsonData = await response.json();
       console.log(jsonData);
+      dispatch(AllProductsData(jsonData));
 
       const filterData = jsonData.filter((data) => {
         return data?.featured === true;
@@ -48,7 +52,7 @@ const Body = () => {
             Upgrade your lifestyle with Gada Electronics today.
           </p>
           <div className="mt-2 transition-all ease-in-out delay-200">
-            <Link to="/">
+            <Link to="/shop">
               <button className="px-2 py-2 bg-blue-600 text-[18px] text-white font-medium active:scale-[0.89]">
                 Shop Now
               </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FormatPrice } from "../helpers/FormatPrice";
 
 const FeaturedItems = ({ featuredData }) => {
   return (
@@ -12,7 +13,9 @@ const FeaturedItems = ({ featuredData }) => {
           <img className=" w-full" src={featuredData?.image} alt="item-image" />
           <div className="flex justify-between">
             <p>{featuredData?.name}</p>
-            <p>{featuredData?.price}</p>
+            <p className=" text-orange-700">
+              {FormatPrice(featuredData?.price)}
+            </p>
           </div>
         </div>
       </Link>
