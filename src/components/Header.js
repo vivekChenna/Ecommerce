@@ -38,9 +38,9 @@ const Header = () => {
           <li>
             <Link
               className="text-white font-serif text-2xl font-bold"
-              to="/about"
+              to="/products"
             >
-              About
+              Products
             </Link>
           </li>
           <li>

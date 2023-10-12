@@ -95,8 +95,8 @@ const SingleProduct = () => {
             {showImg.length === 0 ? (
               <img
                 src={productData?.image[0].url}
-                width="300"
-                height="300"
+                width="400"
+                height="400"
                 alt=""
               />
             ) : (

@@ -1,8 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Body from "./components/Body";
-import Header from "./components/Header";
-import About from "./components/About";
+import Header from "./components/Header"; 
 import Cart from "./components/Cart";
 import Contact from "./components/Contact";
 import { useSelector } from "react-redux";
@@ -16,7 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Body />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<AllProducts />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<ErrorPage />} />

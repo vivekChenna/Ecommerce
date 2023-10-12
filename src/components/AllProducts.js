@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import ProductsListing from "./ProductsListing";
 import React, { useState, useEffect } from "react";
+import ListViewProducts from "./ListViewProducts";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 
 const AllProducts = () => {
   const AllProductsData = useSelector((store) => store.app.AllProducts);
@@ -8,8 +11,9 @@ const AllProducts = () => {
   const [data, setData] = useState(AllProductsData);
   const [textDecor, setTextDecor] = useState("All");
   const [searchText, setSearchText] = useState("");
+  const [showGridView, setShowGridView] = useState(true);
 
-  const filterProductsData = (allProducts, category, searchText) => {
+  const filterProductsData = (allProducts, category) => {
     const result = allProducts.filter((item) => {
       return item?.category === category;
     });
@@ -28,6 +32,31 @@ const AllProducts = () => {
   useEffect(() => {
     filterSearch(AllProductsData, searchText);
   }, [searchText]);
+
+  function SortProducts(event) {
+    let userSelectedValue = event.target.value;
+    let allData = [...AllProductsData];
+
+    const Sorting = (a, b) => {
+      if (userSelectedValue === "lowest") {
+        return a.price - b.price;
+      }
+      if (userSelectedValue === "highest") {
+        return b.price - a.price;
+      }
+
+      if (userSelectedValue === "a-z") {
+        return a.name.localeCompare(b.name);
+      }
+
+      if (userSelectedValue === "z-a") {
+        return b.name.localeCompare(a.name);
+      }
+    };
+
+    const newSortedData = allData.sort(Sorting);
+    setData(newSortedData);
+  }
 
   return (
     <div className="flex border-2 border-black max-w-7xl mx-auto">
@@ -119,12 +148,26 @@ const AllProducts = () => {
         </div>
       </div>
       {/* this is the second div for all products listing */}
-      <div className=" w-[1024px] max-w-5xl flex flex-col">
-        <div className="flex border border-red-500 justify-between">
+      <div className=" w-[1024px] max-w-5xl flex flex-col mt-4">
+        <div className="flex justify-around items-center">
           {/* for grid and list */}
-          <div>
-            <button>grid</button>
-            <button>list view</button>
+          <div className=" flex gap-6">
+            <button
+              className={showGridView ? " border-2 border-black p-1 " : "p-1"}
+              onClick={() => {
+                setShowGridView(true);
+              }}
+            >
+              <BsFillGrid3X3GapFill fontSize="1.5rem" />
+            </button>
+            <button
+              className={showGridView ? "p-1" : " border-2 border-black p-1"}
+              onClick={() => {
+                setShowGridView(false);
+              }}
+            >
+              <AiOutlineUnorderedList fontSize="1.6rem" />
+            </button>
           </div>
           {/* all products count */}
           <div>
@@ -134,9 +177,24 @@ const AllProducts = () => {
             </p>
           </div>
           {/* filter of highest and lowest */}
-          <div>filter highest lowest</div>
+          <div>
+            <form action="#">
+              <label htmlFor="sort"></label>
+              <select name="sort" id="sort" onClick={SortProducts}>
+                <option value="filter">filter</option>
+                <option value="lowest">Price(lowest)</option>
+                <option value="highest">Price(highest)</option>
+                <option value="a-z">Price(a-z)</option>
+                <option value="z-a">Price(z-a)</option>
+              </select>
+            </form>
+          </div>
         </div>
-        <ProductsListing productData={data} />
+        {showGridView ? (
+          <ProductsListing productData={data} />
+        ) : (
+          <ListViewProducts productData={data} />
+        )}
       </div>
     </div>
   );

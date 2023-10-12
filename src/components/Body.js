@@ -52,7 +52,7 @@ const Body = () => {
             Upgrade your lifestyle with Gada Electronics today.
           </p>
           <div className="mt-2 transition-all ease-in-out delay-200">
-            <Link to="/shop">
+            <Link to="/products">
               <button className="px-2 py-2 bg-blue-600 text-[18px] text-white font-medium active:scale-[0.89]">
                 Shop Now
               </button>
