@@ -21,6 +21,23 @@ const AllProducts = () => {
     setData(result);
   };
 
+  const filterByCompany = (event) => {
+    let allProductsData = [...AllProductsData];
+
+    let userSelectedValue = event.target.value;
+
+    if (userSelectedValue === "filter") {
+      setData(allProductsData);
+      return;
+    }
+
+    const response = allProductsData.filter((obj) => {
+      return obj.company === userSelectedValue;
+    });
+
+    setData(response);
+  };
+
   const filterSearch = (allProducts, searchText) => {
     const result = allProducts.filter((item) => {
       return item.name.toLowerCase().includes(searchText.toLowerCase());
@@ -146,6 +163,30 @@ const AllProducts = () => {
             clear filter
           </button>
         </div>
+        <div>
+          <p>Company</p>
+
+          <div>
+            <form action="#">
+              <label htmlFor="sortbyCompany"></label>
+              <select
+                name=""
+                id="sortbyCompany"
+                className=" outline"
+                onClick={filterByCompany}
+              >
+                <option value="filter">filter company</option>
+                <option value="samsung">samsung</option>
+                <option value="lenova">lenovo</option>
+                <option value="apple">apple</option>
+                <option value="rolex">rolex</option>
+                <option value="dell">dell</option>
+                <option value="nokia">nokia</option>
+                <option value="asus">asus</option>
+              </select>
+            </form>
+          </div>
+        </div>
       </div>
       {/* this is the second div for all products listing */}
       <div className=" w-[1024px] max-w-5xl flex flex-col mt-4">
@@ -180,7 +221,12 @@ const AllProducts = () => {
           <div>
             <form action="#">
               <label htmlFor="sort"></label>
-              <select name="sort" id="sort" onClick={SortProducts}>
+              <select
+                name="sort"
+                id="sort"
+                className=" outline"
+                onClick={SortProducts}
+              >
                 <option value="filter">filter</option>
                 <option value="lowest">Price(lowest)</option>
                 <option value="highest">Price(highest)</option>
