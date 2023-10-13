@@ -175,7 +175,7 @@ const AllProducts = () => {
                 className=" outline"
                 onClick={filterByCompany}
               >
-                <option value="filter">filter company</option>
+                <option value="filter">filter by company</option>
                 <option value="samsung">samsung</option>
                 <option value="lenova">lenovo</option>
                 <option value="apple">apple</option>
@@ -227,7 +227,7 @@ const AllProducts = () => {
                 className=" outline"
                 onClick={SortProducts}
               >
-                <option value="filter">filter</option>
+                <option value="filter">filter by price</option>
                 <option value="lowest">Price(lowest)</option>
                 <option value="highest">Price(highest)</option>
                 <option value="a-z">Price(a-z)</option>
